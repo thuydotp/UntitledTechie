@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using UntitledTechie.Api.Data;
-using UntitledTechie.Api.Entities;
+using UntitledTechie.Infrastructure.Data;
+using UntitledTechie.Infrastructure.Entities;
 
 namespace UntitledTechie.Api.Controllers
 {

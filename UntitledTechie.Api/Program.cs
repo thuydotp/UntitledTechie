@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using UntitledTechie.Api.Data;
+using UntitledTechie.Infrastructure.Data;
 
 namespace UntitledTechie.Api
 {
@@ -35,8 +35,8 @@ namespace UntitledTechie.Api
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<TechieContext>();
-                    DbInitializer.Initialize(context);
+                    // var context = services.GetRequiredService<TechieContext>();
+                    // DbInitializer.Initialize(context);
                 }
                 catch (System.Exception ex)
                 {

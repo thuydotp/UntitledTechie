@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using UntitledTechie.Api.Data;
+using UntitledTechie.Infrastructure.Data;
 using UntitledTechie.Api.DTOs;
-using UntitledTechie.Api.Entities;
+using UntitledTechie.Infrastructure.Entities;
 
 namespace UntitledTechie.Api.Controllers
 {

@@ -1,20 +1,32 @@
 using Microsoft.EntityFrameworkCore;
-using UntitledTechie.Api.Entities;
+using UntitledTechie.Infrastructure.Entities;
 
-namespace UntitledTechie.Api.Data
+namespace UntitledTechie.Infrastructure.Data
 {
     public class TechieContext : DbContext
     {
-        public TechieContext(DbContextOptions<TechieContext> options)
-            : base(options)
+        public TechieContext()
         {
 
         }
+        // public TechieContext(DbContextOptions<TechieContext> options)
+        //     : base(options)
+        // {
+
+        // }
 
         public DbSet<AccountEntity> Accounts { get; set; }
         public DbSet<PostEntity> Posts { get; set; }
         public DbSet<CommentEntity> Comments { get; set; }
         public DbSet<SubCommentEntity> SubComments { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured) {
+                optionsBuilder.UseSqlServer("Server=localhost;Database=TechieDB;Trusted_Connection=True;MultipleActiveResultSets=true");
+            }
+            
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -43,7 +55,9 @@ namespace UntitledTechie.Api.Data
                 .HasMany(cmt => cmt.SubComments)
                 .WithOne()
                 .HasForeignKey(sub => sub.CommentId)
-                .OnDelete(DeleteBehavior.Restrict);            
+                .OnDelete(DeleteBehavior.Restrict);
+
+            DbInitializer.SeedData(modelBuilder);
         }
 
     }
