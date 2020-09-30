@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using UntitledTechie.Infrastructure.Data;
 using UntitledTechie.Api.DTOs;
 using UntitledTechie.Infrastructure.Entities;
-using UntitledTechie.Infrastructure.Repositories.Contract;
+using UntitledTechie.Infrastructure.Repositories;
 
 namespace UntitledTechie.Api.Controllers
 {

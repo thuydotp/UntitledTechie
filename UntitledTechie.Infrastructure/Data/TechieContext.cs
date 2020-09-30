@@ -9,11 +9,12 @@ namespace UntitledTechie.Infrastructure.Data
         {
 
         }
-        // public TechieContext(DbContextOptions<TechieContext> options)
-        //     : base(options)
-        // {
 
-        // }
+        public TechieContext(DbContextOptions<TechieContext> options)
+            : base(options)
+        {
+
+        }
 
         public DbSet<AccountEntity> Accounts { get; set; }
         public DbSet<PostEntity> Posts { get; set; }

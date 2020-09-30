@@ -5,23 +5,23 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using UntitledTechie.Infrastructure.Entities;
 
-namespace UntitledTechie.Infrastructure.Repositories.Contract
+namespace UntitledTechie.Infrastructure.Repositories
 {
-    public interface IRepository<TEntity, TKey> where TEntity : BaseEntity<TKey>
+    public interface IRepository<TEntity> where TEntity : BaseEntity
     {
 
         #region SELECT/ GET/ QUERY
 
         IQueryable<TEntity> GetAll();
         IList<TEntity> GetAllList();
-        Task<List<TEntity>> GetAllListAsync();
+        Task<IList<TEntity>> GetAllListAsync();
 
         IList<TEntity> GetAllList(Expression<Func<TEntity, bool>> predicate);
         Task<IList<TEntity>> GetAllListAsync(Expression<Func<TEntity, bool>> predicate);
         IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> predicate);
 
-        TEntity Get(TKey id);
-        Task<TEntity> GetAsync(TKey id);
+        TEntity Get(object id);
+        Task<TEntity> GetAsync(object id);
 
         TEntity Single(Expression<Func<TEntity,bool>> predicate);
         Task<TEntity> SingleAsync(Expression<Func<TEntity,bool>> predicate);
@@ -52,7 +52,7 @@ namespace UntitledTechie.Infrastructure.Repositories.Contract
 
         #region  DELETE
         void Delete(TEntity entity);
-        void DeleteById(TKey id);
+        void DeleteById(object id);
 
         void Delete(IEnumerable<TEntity> entities);
         void Delete(Expression<Func<TEntity, bool>> predicate);

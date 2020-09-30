@@ -5,182 +5,208 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using UntitledTechie.Infrastructure.Entities;
-using UntitledTechie.Infrastructure.Repositories.Contract;
 
 namespace UntitledTechie.Infrastructure.Repositories
 {
-    public class BaseRepository<TEntity, TKey, TContext> : IRepository<TEntity, TKey>
-        where TEntity : BaseEntity<TKey>
+    public class BaseRepository<TEntity, TContext> : IRepository<TEntity>
+        where TEntity : BaseEntity
         where TContext : DbContext
     {
-        int IRepository<TEntity, TKey>.Count()
+        private readonly TContext _context;
+        private readonly DbSet<TEntity> _entity;
+        public BaseRepository(TContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+            _entity = context.Set<TEntity>();
         }
 
-        int IRepository<TEntity, TKey>.Count(Expression<Func<TEntity, bool>> predicate)
+        #region SELECT/ GET/ QUERY
+        public IQueryable<TEntity> GetAll()
         {
-            throw new NotImplementedException();
+        return _entity.AsNoTracking();
         }
 
-        Task<int> IRepository<TEntity, TKey>.CountAsync()
+        public IList<TEntity> GetAllList()
         {
-            throw new NotImplementedException();
+            return GetAll().ToList();
+        }
+        public async Task<IList<TEntity>> GetAllListAsync()
+        {
+            return await GetAll().ToListAsync();
         }
 
-        Task<int> IRepository<TEntity, TKey>.CountAsync(Expression<Func<TEntity, bool>> predicate)
+        public IList<TEntity> GetAllList(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return GetAll().Where(predicate).ToList();
         }
 
-        long IRepository<TEntity, TKey>.CountLong()
+        public async Task<IList<TEntity>> GetAllListAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await GetAll().Where(predicate).ToListAsync();
         }
 
-        long IRepository<TEntity, TKey>.CountLong(Expression<Func<TEntity, bool>> predicate)
+        public IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return GetAll().Where(predicate);
         }
 
-        Task<long> IRepository<TEntity, TKey>.CountLongAsync()
+        public TEntity Get(object id)
         {
-            throw new NotImplementedException();
+            return _entity.Find(id);
         }
 
-        Task<long> IRepository<TEntity, TKey>.CountLongAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<TEntity> GetAsync(object id)
         {
-            throw new NotImplementedException();
+            return await _entity.FindAsync(id);
         }
 
-        void IRepository<TEntity, TKey>.Delete(TEntity entity)
+        public TEntity Single(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return Query(predicate).Single();
         }
 
-        void IRepository<TEntity, TKey>.Delete(IEnumerable<TEntity> entities)
+        public async Task<TEntity> SingleAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await Query(predicate).SingleAsync();
         }
 
-        void IRepository<TEntity, TKey>.Delete(Expression<Func<TEntity, bool>> predicate)
+        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return Query(predicate).SingleOrDefault();
         }
 
-        void IRepository<TEntity, TKey>.DeleteById(TKey id)
+        public async Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await Query(predicate).SingleOrDefaultAsync();
         }
 
-        TEntity IRepository<TEntity, TKey>.First(Expression<Func<TEntity, bool>> predicate)
+        public TEntity First(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return Query(predicate).First();
         }
 
-        Task<TEntity> IRepository<TEntity, TKey>.FirstAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<TEntity> FirstAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await Query(predicate).FirstAsync();
         }
 
-        TEntity IRepository<TEntity, TKey>.FirstOrDefault(Expression<Func<TEntity, bool>> predicate)
+        public TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return Query(predicate).FirstOrDefault();
         }
 
-        Task<TEntity> IRepository<TEntity, TKey>.FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await Query(predicate).FirstOrDefaultAsync();
         }
 
-        TEntity IRepository<TEntity, TKey>.Get(TKey id)
+
+        #endregion
+
+        #region INSERT
+        public void Insert(TEntity entity)
         {
-            throw new NotImplementedException();
+            _entity.Add(entity);
         }
 
-        IQueryable<TEntity> IRepository<TEntity, TKey>.GetAll()
+        public async Task InsertAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+            await _entity.AddAsync(entity);
         }
 
-        IList<TEntity> IRepository<TEntity, TKey>.GetAllList()
+        public void Insert(IEnumerable<TEntity> entities)
         {
-            throw new NotImplementedException();
+            _entity.AddRange(entities);
         }
 
-        IList<TEntity> IRepository<TEntity, TKey>.GetAllList(Expression<Func<TEntity, bool>> predicate)
+        public async Task InsertAsync(IEnumerable<TEntity> entities)
         {
-            throw new NotImplementedException();
+            await _entity.AddRangeAsync(entities);
         }
 
-        Task<List<TEntity>> IRepository<TEntity, TKey>.GetAllListAsync()
+
+        #endregion
+
+        #region UPDATE
+        public void Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            _entity.Update(entity);
         }
 
-        Task<IList<TEntity>> IRepository<TEntity, TKey>.GetAllListAsync(Expression<Func<TEntity, bool>> predicate)
+        public void Update(IEnumerable<TEntity> entities)
         {
-            throw new NotImplementedException();
+            _entity.UpdateRange(entities);
         }
 
-        Task<TEntity> IRepository<TEntity, TKey>.GetAsync(TKey id)
+        #endregion
+
+        #region  DELETE
+        public void Delete(TEntity entity)
         {
-            throw new NotImplementedException();
+            _entity.Remove(entity);
         }
 
-        void IRepository<TEntity, TKey>.Insert(TEntity entity)
+        public void DeleteById(object id)
         {
-            throw new NotImplementedException();
+            _entity.Remove(Get(id));
         }
 
-        void IRepository<TEntity, TKey>.Insert(IEnumerable<TEntity> entities)
+        public void Delete(IEnumerable<TEntity> entities)
         {
-            throw new NotImplementedException();
+            _entity.RemoveRange(entities);
         }
 
-        Task IRepository<TEntity, TKey>.InsertAsync(TEntity entity)
+        public void Delete(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            IList<TEntity> list = _entity.Where(predicate).ToList();
+            _entity.RemoveRange(list);
         }
 
-        Task IRepository<TEntity, TKey>.InsertAsync(IEnumerable<TEntity> entities)
+        #endregion
+
+        #region AGGREGATES
+
+        
+        public int Count()
         {
-            throw new NotImplementedException();
+            return GetAll().Count();
         }
 
-        IQueryable<TEntity> IRepository<TEntity, TKey>.Query(Expression<Func<TEntity, bool>> predicate)
+        public async Task<int> CountAsync()
         {
-            throw new NotImplementedException();
+            return await GetAll().CountAsync();
         }
 
-        TEntity IRepository<TEntity, TKey>.Single(Expression<Func<TEntity, bool>> predicate)
+        public int Count(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return Query(predicate).Count();
         }
 
-        Task<TEntity> IRepository<TEntity, TKey>.SingleAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<int> CountAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await Query(predicate).CountAsync();
         }
 
-        TEntity IRepository<TEntity, TKey>.SingleOrDefault(Expression<Func<TEntity, bool>> predicate)
+        public long CountLong()
         {
-            throw new NotImplementedException();
+            return GetAll().LongCount();
         }
 
-        Task<TEntity> IRepository<TEntity, TKey>.SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<long> CountLongAsync()
         {
-            throw new NotImplementedException();
+            return await GetAll().LongCountAsync();
         }
 
-        void IRepository<TEntity, TKey>.Update(TEntity entity)
+        public long CountLong(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return Query(predicate).LongCount();
         }
 
-        void IRepository<TEntity, TKey>.Update(IEnumerable<TEntity> entities)
+        public async Task<long> CountLongAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            return await Query(predicate).LongCountAsync();
         }
+
+        #endregion
     }
 }
