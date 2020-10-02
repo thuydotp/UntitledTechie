@@ -1,3 +1,22 @@
 .MainContent {
-    margin-top: 16px;
+  margin-top: 54px;
+  background-color: #fafafa;
+}
+
+.FixedTop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.TopNavbar {
+  border-bottom: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  background-color: rgba(var(--d87,255,255,255),1);
+  height: 54px;
+}
+
+.TopNavIcon {
+    margin-right: 22px;
 }

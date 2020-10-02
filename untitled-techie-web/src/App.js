@@ -12,11 +12,9 @@ library.add(fas);
 
 function App() {
   return (
-    <div>
-      <Layout>
-        <Homepage />
-      </Layout>
-    </div>
+    <Layout>
+      <Homepage />
+    </Layout>
   );
 }
 

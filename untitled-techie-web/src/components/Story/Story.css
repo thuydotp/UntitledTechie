@@ -1,0 +1,8 @@
+.StoryWrapper {
+    display: inline-block;
+    width: 80px;
+}
+
+.StoryAuthor {
+    word-wrap: break-word;
+}
