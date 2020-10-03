@@ -1,0 +1,15 @@
+.Username {
+  color: #262626;
+  font-weight: 600;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.Fullname {
+  font-size: 12px;
+  line-height: 14px;
+  overflow: hidden;
+  padding-left: 2px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -8,7 +8,7 @@ const story = (props) => {
   return (
     <Aux>
       <div className={classes.StoryWrapper}>
-        <Image src="https://picsum.photos/56/56" roundedCircle />
+        <Image src="https://picsum.photos/56" roundedCircle />
         <div className={classes.StoryAuthor}>{props.author}</div>
       </div>
     </Aux>

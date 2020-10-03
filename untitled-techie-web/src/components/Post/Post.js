@@ -13,7 +13,7 @@ const post = (props) => {
           <div>{props.author}</div>
           <FontAwesomeIcon icon="ellipsis-h" size="lg" />
         </Card.Header>
-        <Card.Img src="https://picsum.photos/600/600" />
+        <Card.Img src="https://picsum.photos/600" />
         <Card.Body className={classes.CardBody}>
           <div className={classes.PostControlBar}>
             <div>
