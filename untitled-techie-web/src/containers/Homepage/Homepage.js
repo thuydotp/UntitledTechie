@@ -15,18 +15,21 @@ class Homepage extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8">
-              <div>
-                <Story author="doc.sach.moi.ngay"></Story>
-                <Story author="interaction_design_foundation"></Story>
-                <Story author="moingay1trangsach"></Story>
-                <Story author="tinhte_official"></Story>
-                <Story author="nguoi.doc.sach"></Story>
-                <Story author="doc.sach.moi.ngay"></Story>
-                <Story author="interaction_design_foundation"></Story>
-                <Story author="moingay1trangsach"></Story>
-                <Story author="tinhte_official"></Story>
-                <Story author="nguoi.doc.sach"></Story>
+              <div className={["card", classes.StoryCard].join(" ")}>
+                <div className={["card-body", classes.StoryCardBody].join(" ")}>
+                  <Story author="doc.sach.moi.ngay"></Story>
+                  <Story author="interaction_design_foundation"></Story>
+                  <Story author="moingay1trangsach"></Story>
+                  <Story author="tinhte_official"></Story>
+                  <Story author="nguoi.doc.sach"></Story>
+                  <Story author="doc.sach.moi.ngay"></Story>
+                  <Story author="interaction_design_foundation"></Story>
+                  <Story author="moingay1trangsach"></Story>
+                  <Story author="tinhte_official"></Story>
+                  <Story author="nguoi.doc.sach"></Story>
+                </div>
               </div>
+              
               <Post
                 author="thegoodquote"
                 caption="Learn to let go #goodquote"
@@ -60,7 +63,7 @@ class Homepage extends Component {
               </div>
 
               <div>
-              <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between">
                   <div>Suggestions for you</div>
                   <a href="#">See All</a>
                 </div>
