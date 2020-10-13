@@ -1,6 +1,6 @@
 import React from "react";
 
-import Aux from "../../hoc/MyAux";
+import Aux from "../../../hoc/MyAux";
 import classes from "./Story.css";
 import Image from "react-bootstrap/Image";
 
