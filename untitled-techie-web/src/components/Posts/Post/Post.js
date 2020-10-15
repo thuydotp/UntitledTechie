@@ -1,5 +1,5 @@
 import React from "react";
-import Aux from "../../hoc/MyAux";
+import Aux from "../../../hoc/MyAux";
 import classes from "./Post.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
