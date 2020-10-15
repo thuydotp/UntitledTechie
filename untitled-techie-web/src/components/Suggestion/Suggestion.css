@@ -13,3 +13,42 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.SuggestionItem {
+  padding: 8px 16px;
+  align-items: center;
+}
+
+.SuggestionTitle {
+  color: rgba(var(--f52, 142, 142, 142), 1);
+  font-size: 14px;
+  line-height: 18px;
+  margin: -3px 0 -4px;
+}
+
+.SuggestionViewAll {
+  color: rgba(var(--i1d, 38, 38, 38), 1);
+  font-size: 12px;
+  line-height: 14px;
+  margin: -2px 0 -3px;
+}
+
+.SuggestionNote {
+  color: rgba(var(--f52, 142, 142, 142), 1);
+  font-size: 12px;
+  line-height: 14px;
+  margin: -2px 0 -3px;
+  font-weight: 400;
+}
+
+.FollowLink {
+  color: rgba(var(--d69,0,149,246),1);
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 14px;
+  margin: -2px 0 -3px;
+}
+
+.FollowLink:hover {
+  text-decoration: none;
+}

@@ -7,7 +7,7 @@ const stories = (props) => {
     <div className={["card", classes.StoryCard].join(" ")}>
       <div className={["card-body", classes.StoryCardBody].join(" ")}>
         {props.stories.map((story) => {
-          return <Story author={story.author}></Story>;
+          return <Story key={story.id} author={story.author}></Story>;
         })}
       </div>
     </div>

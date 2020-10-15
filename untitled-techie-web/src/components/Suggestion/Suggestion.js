@@ -4,14 +4,27 @@ import classes from "./Suggestion.css";
 const suggestion = (props) => {
   return (
     <div>
-      <div className="d-flex justify-content-between">
-        <div>Suggestions for you</div>
-        <a href="#">See All</a>
+      <div
+        className={[
+          "d-flex",
+          "justify-content-between",
+          classes.SuggestionItem,
+        ].join(" ")}
+      >
+        <div className={classes.SuggestionTitle}>Suggestions for you</div>
+        <a href="#" className={classes.SuggestionViewAll}>See All</a>
       </div>
 
       {props.suggestions.map((account) => {
         return (
-          <div className="d-flex justify-content-between">
+          <div
+            key={account.id}
+            className={[
+              "d-flex",
+              "justify-content-between",
+              classes.SuggestionItem,
+            ].join(" ")}
+          >
             <div className="media">
               <img
                 className="mr-3 rounded-circle"
@@ -22,10 +35,10 @@ const suggestion = (props) => {
                 <a className={["mt-0", classes.Username].join(" ")}>
                   {account.username}
                 </a>
-                <div className={classes.Fullname}>{account.note}</div>
+                <div className={[classes.Fullname, classes.SuggestionNote].join(" ")}>{account.note}</div>
               </div>
             </div>
-            <a href="#">Follow</a>
+            <a href="#" className={classes.FollowLink}>Follow</a>
           </div>
         );
       })}

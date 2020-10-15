@@ -1,20 +1,23 @@
 .StoryCard {
-    border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
-    border-radius: 3px;
-    margin-bottom: 24px;
-    margin-top: 0;
-  }
-  
-  .StoryCardBody {
-    height: 150px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: stretch;
-    align-content: stretch;
-    overflow-x: auto;
-    overflow-y: hidden;  
-    padding: 16px 0;
-  }
-  
+  border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
+  border-radius: 3px;
+  margin-bottom: 24px;
+  margin-top: 0;
+}
+
+.StoryCardBody {
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  align-content: stretch;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 16px 0;
+}
+
+.AccountItem {
+  padding: 8px 16px;
+}

@@ -16,7 +16,7 @@ class Homepage extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8">
-              <Stories stories={this.data.stories}></Stories>
+              {/* <Stories stories={this.data.stories}></Stories> */}
               <Posts posts={this.data.posts}></Posts>
             </div>
             <div className="col-md-4">

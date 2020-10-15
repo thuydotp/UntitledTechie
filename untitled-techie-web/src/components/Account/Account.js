@@ -3,7 +3,7 @@ import classes from "./Account.css";
 
 const account = (props) => {
   return (
-    <div className="media">
+    <div className={["media", classes.AccountItem].join(" ")}>
       <img
         className="mr-3 rounded-circle"
         src="https://picsum.photos/56"
